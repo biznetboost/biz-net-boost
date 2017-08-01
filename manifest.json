@@ -1,0 +1,7 @@
+{
+  "name": "web-apps",
+  "short_name": "web-apps",
+  "description": "Polymer based website creator",
+  "start_url": "/",
+  "display": "standalone"
+}
