@@ -22,6 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-badge/paper-badge.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="lazy-import" href="home-view.html">
@@ -102,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>BizNet Boost</div>
-						<paper-button id="user-account">Sign In</paper-button>
+						<paper-button id="user-account" on-click="_showDialog">Sign In</paper-button>
 						<paper-icon-button id="shopping-cart" icon="icons:shopping-cart"></paper-icon-button>
 						<paper-badge for="shopping-cart" label="[[numItems]]" class="badge"></paper-badge>
           </app-toolbar>
@@ -118,6 +119,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
+		
+		<paper-dialog id="dialog">
+			<h2>Sign In</h2>
+			<p>Sign In with facebook</p>
+			<p>Sign In with Google</p>
+			<p>Sign In with Git-hub</p>
+			<div class="buttons">
+				<paper-button dialog-dismiss>Cancel</paper-button>
+				<paper-button dialog-confirm autofocus>OK</paper-button>
+			</div>
+		</paper-dialog>
   </template>
 
   <script>
@@ -173,6 +185,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _showPage404() {
         this.page = 'view404';
       }
+
+			_showDialog() {
+				this.$.dialog.open();
+			}
     }
 
     window.customElements.define(MyApp.is, MyApp);
