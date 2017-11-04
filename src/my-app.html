@@ -25,9 +25,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 
 <link rel="lazy-import" href="home-view.html">
-<link rel="lazy-import" href="my-view2.html">
+<link rel="lazy-import" href="login-view.html">
 <link rel="lazy-import" href="my-view3.html">
 <link rel="lazy-import" href="my-view404.html">
 
@@ -37,6 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         --app-primary-color: #f44336;
         --app-secondary-color: black;
+				--primary-color: #f44336;
 
         display: block;
       }
@@ -60,15 +62,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				@apply(--layout-vertical);
       }
 
-      .drawer-list a {
+      .drawer-list div a {
         display: block;
         padding: 0 16px;
         text-decoration: none;
-        color: var(--app-secondary-color);
+				color: var(--app-secondary-color);
         line-height: 40px;
       }
 
-      .drawer-list a.iron-selected {
+      .drawer-list div a.iron-selected {
         color: black;
         font-weight: bold;
       }
@@ -134,8 +136,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					<app-toolbar>Menu</app-toolbar>
 					<iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
 						<div class="content"><a name="home" href="[[rootPath]]home">Home</a></div>
-						<div class="content-flex"><a name="home" href="[[rootPath]]packages">Packages</a></div>
-						<div class="content"><a name="home" href="[[rootPath]]login">Login</a></div>
+						<div class="content"><a name="packages" href="[[rootPath]]packages">Packages</a></div>
+						<div class="content"><a name="login" href="[[rootPath]]login">Login</a></div>
 					</iron-selector>
 				</div>
       </app-drawer>
@@ -147,7 +149,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>BizNet Boost</div>
-						<paper-button id="user-account" on-click="_showDialog">Sign In</paper-button>
 						<paper-icon-button id="shopping-cart" icon="icons:shopping-cart"></paper-icon-button>
 						<paper-badge for="shopping-cart" label="[[numItems]]" class="badge"></paper-badge>
           </app-toolbar>
@@ -159,25 +160,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="view404"
             role="main">
           <home-view name="home"></home-view>
+					<login-view name="login"></login-view>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
-		
-		<paper-dialog id="dialog">
-			<h2>Sign In</h2>
-			<div>
-				<paper-button class="facebook-login-button">Sign In with facebook</paper-button>
-			</div>
-			<div>
-				<paper-button class="google-login-button">Sign In with Google</paper-button>
-			</div>
-			<p>Sign In with Git-hub</p>
-			<div class="buttons">
-				<paper-button dialog-dismiss>Cancel</paper-button>
-				<paper-button dialog-confirm autofocus>OK</paper-button>
-			</div>
-		</paper-dialog>
   </template>
 
   <script>

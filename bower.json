@@ -20,7 +20,8 @@
     "iron-icon": "PolymerElements/iron-icon#^2.0.1",
     "paper-badge": "PolymerElements/paper-badge#^2.0.0",
     "paper-dialog": "PolymerElements/paper-dialog#^2.0.0",
-    "paper-dialog-behavior": "PolymerElements/paper-dialog-behavior#^2.0.1"
+    "paper-dialog-behavior": "PolymerElements/paper-dialog-behavior#^2.0.1",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^2.0.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"
