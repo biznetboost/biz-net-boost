@@ -22,7 +22,8 @@
     "paper-dialog": "PolymerElements/paper-dialog#^2.0.0",
     "paper-dialog-behavior": "PolymerElements/paper-dialog-behavior#^2.0.1",
     "paper-toolbar": "PolymerElements/paper-toolbar#^2.0.0",
-    "polymerfire": "firebase/polymerfire#^2.2.1"
+    "polymerfire": "firebase/polymerfire#^2.2.1",
+    "paper-card": "PolymerElements/paper-card#^2.0.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"
