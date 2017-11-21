@@ -26,11 +26,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 
 <link rel="lazy-import" href="home-view.html">
 <link rel="lazy-import" href="login-view.html">
 <link rel="lazy-import" href="my-view3.html">
-<link rel="lazy-import" href="my-view404.html">
+<link rel="lazy-import" href="view404-view.html">
 
 <dom-module id="my-app">
   <template>
@@ -38,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         --app-primary-color: #f44336;
         --app-secondary-color: black;
-				--primary-color: #f44336;
+        --primary-color: #f44336;
 
         display: block;
       }
@@ -58,69 +60,81 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .drawer-list {
         margin: 0 20px;
-				@apply(--layout-flex);
-				@apply(--layout-vertical);
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
       }
 
       .drawer-list div a {
         display: block;
         padding: 0 16px;
         text-decoration: none;
-				color: var(--app-secondary-color);
+        color: var(--app-secondary-color);
         line-height: 40px;
       }
 
-      .drawer-list div a.iron-selected {
+      .iron-selected {
         color: black;
         font-weight: bold;
       }
 
-			.badge {
-				--paper-badge-background: white;
-				--paper-badge-text-color: var(--app-primary-color);
-				--paper-badge-margin-left: -12px;
+      .badge {
+        --paper-badge-background: white;
+        --paper-badge-text-color: var(--app-primary-color);
+        --paper-badge-margin-left: -12px;
         --paper-badge-margin-bottom: -12px;
-				--paper-badge-width: 16px;
-				--paper-badge-height: 16px;
-			}
+        --paper-badge-width: 16px;
+        --paper-badge-height: 16px;
+      }
 
-			.facebook-login-button {
-				background-color: var(--paper-indigo-500);
-				color: white;
-				--paper-button-raised-keyboard-focus: {
-					background-color: var(--paper-pink-a200) !important;
-					color: white !important;
-				};
-			}
+      .facebook-login-button {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
 
-			.facebook-login-button:hover {
-				background-color: var(--paper-indigo-400);
-			}
-			
-			.google-login-button {
-				background-color: var(--google-red-500);
-				color: white;
-				--paper-button-raised-keyboard-focus: {
-					background-color: var(--paper-pink-a200) !important;
-					color: white !important;
-				};
-			}
-			.google-login-button:hover {
-				background-color: var(--google-red-300);
-			}
-			.container {
-				width: 100%;
-				height: 100%;
-				@apply(--layout-vertical);
-				@apply(--layout-flex);
-			}
-			.content {
-				@apply(--layout-flex-none);
-			}
-			.content-flex {
-				@apply(--layout-flex);
-			}
+      .facebook-login-button:hover {
+        background-color: var(--paper-indigo-400);
+      }
+      
+      .google-login-button {
+        background-color: var(--google-red-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
+      .google-login-button:hover {
+        background-color: var(--google-red-300);
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+      }
+      .content {
+        width: 100%;
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+      }
+      .content-flex {
+        @apply(--layout-flex);
+      }
+      .menu-icon {
+        margin: -6px 0 0 -12px;
+      }
     </style>
+
+    <firebase-app auth-domain="polymer-website-maker.firebaseapp.com"
+      database-url="https://polymer-website-maker.firebaseio.com/"
+      api-key="AIzaSyD52P0Mzy46-rpnxKAbZQMbAdhsuJGI2qM">
+    </firebase-app>
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+    </firebase-auth>  
 
     <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
     <app-route
@@ -132,14 +146,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer-layout fullbleed force-narrow="true" narrow="{{narrow}}">
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-				<div class="container">
-					<app-toolbar>Menu</app-toolbar>
-					<iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-						<div class="content"><a name="home" href="[[rootPath]]home">Home</a></div>
-						<div class="content"><a name="packages" href="[[rootPath]]packages">Packages</a></div>
-						<div class="content"><a name="login" href="[[rootPath]]login">Login</a></div>
-					</iron-selector>
-				</div>
+        <div class="container">
+          <app-toolbar>Menu</app-toolbar>
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+            <div name="home"><a href="[[rootPath]]home"><iron-icon class="menu-icon" icon="home"></iron-icon> <span>Home</span></a></div>
+            <div name="packages"><a href="[[rootPath]]packages">Packages</a></div>
+            <div name="login"><a href="[[rootPath]]login">Login</a></div>
+          </iron-selector>
+        </div>
       </app-drawer>
 
       <!-- Main content -->
@@ -149,8 +163,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>BizNet Boost</div>
-						<paper-icon-button id="shopping-cart" icon="icons:shopping-cart"></paper-icon-button>
-						<paper-badge for="shopping-cart" label="[[numItems]]" class="badge"></paper-badge>
+            <paper-icon-button id="shopping-cart" icon="icons:shopping-cart"></paper-icon-button>
+            <paper-badge for="shopping-cart" label="[[numItems]]" class="badge"></paper-badge>
           </app-toolbar>
         </app-header>
 
@@ -160,11 +174,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="view404"
             role="main">
           <home-view name="home"></home-view>
-					<login-view name="login"></login-view>
-          <my-view404 name="view404"></my-view404>
+          <login-view name="login"></login-view>
+          <view404-view name="view404"></view404-view>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
+    
+    <paper-dialog id="dialog">
+      <h2>Sign In</h2>
+      <paper-button id="googSignIn" class="signInButton" on-tap="_signIn" data-auth="#google" raised>
+      </paper-button>
+    </paper-dialog>
   </template>
 
   <script>
@@ -183,10 +203,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
-					numItems: {
-						type: Number,
-						value: 0
-					}
+          numItems: {
+            type: Number,
+            value: 0
+          }
         };
       }
 
@@ -221,9 +241,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.page = 'view404';
       }
 
-			_showDialog() {
-				this.$.dialog.open();
-			}
+      _showDialog() {
+        this.$.dialog.open();
+      }
     }
 
     window.customElements.define(MyApp.is, MyApp);
