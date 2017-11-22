@@ -146,6 +146,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			paper-button.menu-bar-button {
 				background-color: var(--paper-red-a100);
 			}
+			paper-button[hidden] {
+				display: none;
+			}
+			paper-icon-button[hidden] {
+				display: none;
+			}
 
       .google-login-button {
         color: var(--paper-grey-500);
@@ -181,7 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       database-url="https://polymer-website-maker.firebaseio.com/"
       api-key="AIzaSyD52P0Mzy46-rpnxKAbZQMbAdhsuJGI2qM">
     </firebase-app>
-    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+    <firebase-auth id="auth" user="{{user}}" on-error="handleError">
     </firebase-auth>  
 
     <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
@@ -210,8 +216,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>BizNet Boost</div>
-						<paper-button raised class="menu-bar-button" on-click="_showDialog">Log In</paper-button>
-            <paper-icon-button id="shopping-cart" icon="icons:shopping-cart"></paper-icon-button>
+						<paper-button raised class="menu-bar-button" hidden$="[[user]]" on-click="_showDialog">Log In</paper-button>
+            <paper-icon-button id="shopping-cart" icon="icons:shopping-cart" hidden$="[[_showCart(user)]]"></paper-icon-button>
             <paper-badge for="shopping-cart" label="[[numItems]]" class="badge"></paper-badge>
           </app-toolbar>
         </app-header>
@@ -234,8 +240,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			</h2>
 			<div>
 				<ul class="login-buttons">
-					<li><paper-button raised class="sign-in-button facebook-login-button"><iron-icon src="images/facebook-icon.svg"></iron-icon><span class="login-button-text">Sign in with Facebook</span></paper-button></li>
-					<li><paper-button raised class="sign-in-button google-login-button"><iron-icon src="images/google-logo.svg"></iron-icon><span class="login-button-text">Sign in with Google</span></paper-button></li>
+					<li><paper-button raised class="sign-in-button facebook-login-button" on-click="_loginWithProvider" data-item="facebook"><iron-icon src="images/facebook-icon.svg"></iron-icon><span class="login-button-text">Sign in with Facebook</span></paper-button></li>
+					<li><paper-button raised class="sign-in-button google-login-button" on-click="_loginWithProvider" data-item="google"><iron-icon src="images/google-logo.svg"></iron-icon><span class="login-button-text">Sign in with Google</span></paper-button></li>
 					<li><paper-button raised class="sign-in-button twitter-login-button"><iron-icon src="images/twitter-icon.svg"></iron-icon><span class="login-button-text">Sign in with Twitter</span></paper-button></li>
 					<li><paper-button raised class="sign-in-button github-login-button"><iron-icon src="images/github-icon.svg"></iron-icon><span class="login-button-text">Sign in with Github</span></paper-button></li>
 				</ul>
@@ -303,6 +309,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			
 			_closeDialog() {
 				this.$.dialog.close();
+			}
+
+			_showCart(user) {
+				console.log(!user);
+				return !user;
+			}
+	
+			_loginWithProvider(event) {
+				this.$.auth.signInWithPopup(event.target.dataset.item)
+					.then(function(response) { console.log(response); })
+					.catch(function(response) { console.log(response); });
 			}
     }
 
