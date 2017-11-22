@@ -28,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="custom-icons.html">
 
 <link rel="lazy-import" href="home-view.html">
 <link rel="lazy-import" href="login-view.html">
@@ -86,6 +87,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-badge-height: 16px;
       }
 
+			.login-buttons {
+				display: block;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.login-buttons li {
+				margin-bottom: 15px;
+				text-align: center;
+				padding: 0;
+			}
+
+			.sign-in-button {
+				text-transform: none;
+				width: 100%;
+				max-width: 220px;
+				text-align: left;
+			}
+
       .facebook-login-button {
         background-color: var(--paper-indigo-500);
         color: white;
@@ -94,26 +115,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           color: white !important;
         };
       }
-
       .facebook-login-button:hover {
         background-color: var(--paper-indigo-400);
       }
+
+      .twitter-login-button:hover {
+        background-color: var(--paper-light-blue-400);
+      }
+      .twitter-login-button {
+        background-color: var(--paper-light-blue-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-cyan-a200) !important;
+          color: white !important;
+        };
+      }
       
+      .github-login-button:hover {
+        background-color: var(--paper-grey-800);
+      }
+      .github-login-button {
+        background-color: var(--paper-grey-900);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-cyan-a200) !important;
+          color: white !important;
+        };
+      }
+
 			paper-button.menu-bar-button {
 				background-color: var(--paper-red-a100);
 			}
 
       .google-login-button {
-        background-color: var(--google-red-500);
-        color: white;
-        --paper-button-raised-keyboard-focus: {
-          background-color: var(--paper-pink-a200) !important;
-          color: white !important;
-        };
+        color: var(--paper-grey-500);
       }
-      .google-login-button:hover {
-        background-color: var(--google-red-300);
-      }
+			.login-button-text {
+				padding-left: 16px;
+				font-size: 14px;
+				font-weight: 500;
+			}
       .container {
         width: 100%;
         height: 100%;
@@ -131,6 +172,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .menu-icon {
         margin: -6px 0 0 -12px;
       }
+			.close-button {
+				width: 24px;
+			}
     </style>
 
     <firebase-app auth-domain="polymer-website-maker.firebaseapp.com"
@@ -185,9 +229,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-drawer-layout>
     
     <paper-dialog id="dialog">
-      <h2>Sign In</h2>
-      <paper-button id="googSignIn" class="signInButton" on-tap="_signIn" data-auth="#google" raised>
-      </paper-button>
+      <h2>
+				<div class="content"><div class="content-flex">Sign In</div><div><paper-icon-button icon="icons:close" on-click="_closeDialog"></paper-icon-button></div></div>
+			</h2>
+			<div>
+				<ul class="login-buttons">
+					<li><paper-button raised class="sign-in-button facebook-login-button"><iron-icon src="images/facebook-icon.svg"></iron-icon><span class="login-button-text">Sign in with Facebook</span></paper-button></li>
+					<li><paper-button raised class="sign-in-button google-login-button"><iron-icon src="images/google-logo.svg"></iron-icon><span class="login-button-text">Sign in with Google</span></paper-button></li>
+					<li><paper-button raised class="sign-in-button twitter-login-button"><iron-icon src="images/twitter-icon.svg"></iron-icon><span class="login-button-text">Sign in with Twitter</span></paper-button></li>
+					<li><paper-button raised class="sign-in-button github-login-button"><iron-icon src="images/github-icon.svg"></iron-icon><span class="login-button-text">Sign in with Github</span></paper-button></li>
+				</ul>
+			</div>
     </paper-dialog>
   </template>
 
@@ -246,8 +298,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _showDialog() {
-				this.page = 'login';
+				this.$.dialog.open();
       }
+			
+			_closeDialog() {
+				this.$.dialog.close();
+			}
     }
 
     window.customElements.define(MyApp.is, MyApp);
