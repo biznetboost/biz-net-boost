@@ -21,6 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../bower_components/paper-badge/paper-badge.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
@@ -181,6 +182,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			.close-button {
 				width: 24px;
 			}
+			paper-icon-button.user-icon {
+				width: 48px;
+				height: 48px;
+				--iron-icon: {
+					border: solid 1px @var(--app-primary-color);
+					border-radius: 50%;
+					overflow: hidden;
+				};
+			}
     </style>
 
     <firebase-app auth-domain="polymer-website-maker.firebaseapp.com"
@@ -217,8 +227,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button icon="icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>BizNet Boost</div>
 						<paper-button raised class="menu-bar-button" hidden$="[[user]]" on-click="_showDialog">Log In</paper-button>
-            <paper-icon-button id="shopping-cart" icon="icons:shopping-cart" hidden$="[[_showCart(user)]]"></paper-icon-button>
-            <paper-badge for="shopping-cart" label="[[numItems]]" class="badge"></paper-badge>
+						<paper-icon-button id="shopping-cart" icon="icons:shopping-cart" hidden$="[[_showCart(user)]]"></paper-icon-button>
+						<paper-icon-button class="user-icon" id="user-icon" src$="[[user.photoURL]]" hidden$="[[!user]]"></paper-icon-button>
           </app-toolbar>
         </app-header>
 
@@ -312,7 +322,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			}
 
 			_showCart(user) {
-				console.log(!user);
 				return !user;
 			}
 	
