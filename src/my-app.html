@@ -18,7 +18,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
@@ -182,6 +186,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			.close-button {
 				width: 24px;
 			}
+			.section-heading {
+				color: var(--paper-grey-500);
+				font-size: 16px;
+				margin-top: 16px;
+			}
 			paper-icon-button.user-icon {
 				width: 48px;
 				height: 48px;
@@ -212,9 +221,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
         <div class="container">
           <app-toolbar>Menu</app-toolbar>
-          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-            <div name="home"><a href="[[rootPath]]home"><iron-icon class="menu-icon" icon="home"></iron-icon> <span>Home</span></a></div>
-            <div name="packages"><a href="[[rootPath]]packages">Packages</a></div>
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" selectable=".selectable">
+            <div class="selectable" name="home"><a href="[[rootPath]]home"><iron-icon class="menu-icon" icon="home"></iron-icon> <span>Home</span></a></div>
+            <div class="section-heading" name="packages">Packages</div>
+						<div class="selectable" name="domains"><a href="[[rootPath]]domains"><iron-icon class="menu-icon" icon="social:domain"></iron-icon> <span>Domains</span></a></div>
+						<div class="selectable" name="website"><a href="[[rootPath]]website"><iron-icon class="menu-icon" icon="av:web"></iron-icon> <span>Websites</span></a></div>
+						<div class="selectable" name="apps"><a href="[[rootPath]]apps"><iron-icon class="menu-icon" icon="hardware:phone-android"></iron-icon> <span>Mobile Apps</span></a></div>
+						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="payment"></iron-icon> <span>Payment Integration</span></a></div>
+						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="maps:place"></iron-icon> <span>Local Presence</span></a></div>
           </iron-selector>
         </div>
       </app-drawer>
