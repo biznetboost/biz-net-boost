@@ -44,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        --app-primary-color: #f44336;
+        --app-primary-color: white;
         --app-secondary-color: black;
         --primary-color: #f44336;
 
@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       app-header {
-        color: #fff;
+        color: #f44336;
         background-color: var(--app-primary-color);
       }
 
@@ -64,23 +64,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-icon-button-ink-color: white;
       }
 
+			.container-toolbar {
+				color: #f44336;
+				background-color: var(--app-primary-color);
+			}
+
       .drawer-list {
-        margin: 0 20px;
         @apply(--layout-flex);
         @apply(--layout-vertical);
       }
 
       .drawer-list div a {
         display: block;
-        padding: 0 16px;
+        padding: 0 36px;
         text-decoration: none;
         color: var(--app-secondary-color);
         line-height: 40px;
       }
 
-      .iron-selected {
+      .drawer-list .iron-selected {
         color: black;
         font-weight: bold;
+				background-color: var(--paper-grey-400);
       }
 
       .badge {
@@ -149,7 +154,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
 			paper-button.menu-bar-button {
-				background-color: var(--paper-red-a100);
+				color: white;
+				background-color: #f44336;
 			}
 			paper-button[hidden] {
 				display: none;
@@ -190,6 +196,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				color: var(--paper-grey-500);
 				font-size: 16px;
 				margin-top: 16px;
+				margin-left: 20px;
+			}
+			.icon-label {
+				margin-left: 10px;
 			}
 			paper-icon-button.user-icon {
 				width: 48px;
@@ -199,6 +209,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					border-radius: 50%;
 					overflow: hidden;
 				};
+			}
+			.first-selector {
+				margin-top: 10px;
 			}
     </style>
 
@@ -220,15 +233,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
         <div class="container">
-          <app-toolbar>Menu</app-toolbar>
+          <app-toolbar class="container-toolbar">BizNet Boost</app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" selectable=".selectable">
-            <div class="selectable" name="home"><a href="[[rootPath]]home"><iron-icon class="menu-icon" icon="home"></iron-icon> <span>Home</span></a></div>
-            <div class="section-heading" name="packages">Packages</div>
-						<div class="selectable" name="domains"><a href="[[rootPath]]domains"><iron-icon class="menu-icon" icon="social:domain"></iron-icon> <span>Domains</span></a></div>
-						<div class="selectable" name="website"><a href="[[rootPath]]website"><iron-icon class="menu-icon" icon="av:web"></iron-icon> <span>Websites</span></a></div>
-						<div class="selectable" name="apps"><a href="[[rootPath]]apps"><iron-icon class="menu-icon" icon="hardware:phone-android"></iron-icon> <span>Mobile Apps</span></a></div>
-						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="payment"></iron-icon> <span>Payment Integration</span></a></div>
-						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="maps:place"></iron-icon> <span>Local Presence</span></a></div>
+            <div class="selectable first-selector" name="home"><a href="[[rootPath]]home"><iron-icon class="menu-icon" icon="home"></iron-icon> <span class="icon-label">Home</span></a></div>
+            <div class="section-heading" name="packages">Products</div>
+						<div class="selectable" name="domains"><a href="[[rootPath]]domains"><iron-icon class="menu-icon" icon="social:domain"></iron-icon> <span class="icon-label">Domains</span></a></div>
+						<div class="selectable" name="website"><a href="[[rootPath]]website"><iron-icon class="menu-icon" icon="av:web"></iron-icon> <span class="icon-label">Websites</span></a></div>
+						<div class="selectable" name="apps"><a href="[[rootPath]]apps"><iron-icon class="menu-icon" icon="hardware:phone-android"></iron-icon> <span class="icon-label">Mobile Apps</span></a></div>
+						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="payment"></iron-icon> <span class="icon-label">Payment Integration</span></a></div>
+						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="maps:place"></iron-icon> <span class="icon-label">Local Presence</span></a></div>
           </iron-selector>
         </div>
       </app-drawer>

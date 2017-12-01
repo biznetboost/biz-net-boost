@@ -20,6 +20,9 @@ handlers:
   upload: build/es5-bundled/manifest.json
   secure: always
 
+- url: /api/domains/.*
+  script: api.domains.app
+
 - url: /.*
   static_files: build/es5-bundled/index.html
   upload: build/es5-bundled/index.html
