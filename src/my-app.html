@@ -64,10 +64,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-icon-button-ink-color: white;
       }
 
-			.container-toolbar {
-				color: #f44336;
-				background-color: var(--app-primary-color);
-			}
+      .container-toolbar {
+        color: #f44336;
+        background-color: var(--app-primary-color);
+      }
 
       .drawer-list {
         @apply(--layout-flex);
@@ -85,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .drawer-list .iron-selected {
         color: black;
         font-weight: bold;
-				background-color: var(--paper-grey-400);
+        background-color: var(--paper-grey-400);
       }
 
       .badge {
@@ -97,25 +97,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-badge-height: 16px;
       }
 
-			.login-buttons {
-				display: block;
-				list-style: none;
-				margin: 0;
-				padding: 0;
-			}
-			
-			.login-buttons li {
-				margin-bottom: 15px;
-				text-align: center;
-				padding: 0;
-			}
+      .login-buttons {
+        display: block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .login-buttons li {
+        margin-bottom: 15px;
+        text-align: center;
+        padding: 0;
+      }
 
-			.sign-in-button {
-				text-transform: none;
-				width: 100%;
-				max-width: 220px;
-				text-align: left;
-			}
+      .sign-in-button {
+        text-transform: none;
+        width: 100%;
+        max-width: 220px;
+        text-align: left;
+      }
 
       .facebook-login-button {
         background-color: var(--paper-indigo-500);
@@ -153,25 +153,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
 
-			paper-button.menu-bar-button {
-				color: white;
-				background-color: #f44336;
-			}
-			paper-button[hidden] {
-				display: none;
-			}
-			paper-icon-button[hidden] {
-				display: none;
-			}
+      paper-button.menu-bar-button {
+        color: white;
+        background-color: #f44336;
+      }
+      paper-button[hidden] {
+        display: none;
+      }
+      paper-icon-button[hidden] {
+        display: none;
+      }
 
       .google-login-button {
         color: var(--paper-grey-500);
       }
-			.login-button-text {
-				padding-left: 16px;
-				font-size: 14px;
-				font-weight: 500;
-			}
+      .login-button-text {
+        padding-left: 16px;
+        font-size: 14px;
+        font-weight: 500;
+      }
       .container {
         width: 100%;
         height: 100%;
@@ -189,30 +189,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .menu-icon {
         margin: -6px 0 0 -12px;
       }
-			.close-button {
-				width: 24px;
-			}
-			.section-heading {
-				color: var(--paper-grey-500);
-				font-size: 16px;
-				margin-top: 16px;
-				margin-left: 20px;
-			}
-			.icon-label {
-				margin-left: 10px;
-			}
-			paper-icon-button.user-icon {
-				width: 48px;
-				height: 48px;
-				--iron-icon: {
-					border: solid 1px @var(--app-primary-color);
-					border-radius: 50%;
-					overflow: hidden;
-				};
-			}
-			.first-selector {
-				margin-top: 10px;
-			}
+      .close-button {
+        width: 24px;
+      }
+      .section-heading {
+        color: var(--paper-grey-500);
+        font-size: 16px;
+        margin-top: 16px;
+        margin-left: 20px;
+      }
+      .icon-label {
+        margin-left: 10px;
+      }
+      paper-icon-button.user-icon {
+        width: 48px;
+        height: 48px;
+        --iron-icon: {
+          border: solid 1px @var(--app-primary-color);
+          border-radius: 50%;
+          overflow: hidden;
+        };
+      }
+      .first-selector {
+        margin-top: 10px;
+      }
     </style>
 
     <firebase-app auth-domain="polymer-website-maker.firebaseapp.com"
@@ -237,11 +237,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" selectable=".selectable">
             <div class="selectable first-selector" name="home"><a href="[[rootPath]]home"><iron-icon class="menu-icon" icon="home"></iron-icon> <span class="icon-label">Home</span></a></div>
             <div class="section-heading" name="packages">Products</div>
-						<div class="selectable" name="domains"><a href="[[rootPath]]domains"><iron-icon class="menu-icon" icon="social:domain"></iron-icon> <span class="icon-label">Domains</span></a></div>
-						<div class="selectable" name="website"><a href="[[rootPath]]website"><iron-icon class="menu-icon" icon="av:web"></iron-icon> <span class="icon-label">Websites</span></a></div>
-						<div class="selectable" name="apps"><a href="[[rootPath]]apps"><iron-icon class="menu-icon" icon="hardware:phone-android"></iron-icon> <span class="icon-label">Mobile Apps</span></a></div>
-						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="payment"></iron-icon> <span class="icon-label">Payment Integration</span></a></div>
-						<div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="maps:place"></iron-icon> <span class="icon-label">Local Presence</span></a></div>
+            <div class="selectable" name="domains"><a href="[[rootPath]]domains"><iron-icon class="menu-icon" icon="social:domain"></iron-icon> <span class="icon-label">Domains</span></a></div>
+            <div class="selectable" name="website"><a href="[[rootPath]]website"><iron-icon class="menu-icon" icon="av:web"></iron-icon> <span class="icon-label">Websites</span></a></div>
+            <div class="selectable" name="apps"><a href="[[rootPath]]apps"><iron-icon class="menu-icon" icon="hardware:phone-android"></iron-icon> <span class="icon-label">Mobile Apps</span></a></div>
+            <div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="payment"></iron-icon> <span class="icon-label">Payment Integration</span></a></div>
+            <div class="selectable" name="payment"><a href="[[rootPath]]payment"><iron-icon class="menu-icon" icon="maps:place"></iron-icon> <span class="icon-label">Local Presence</span></a></div>
           </iron-selector>
         </div>
       </app-drawer>
@@ -253,9 +253,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>BizNet Boost</div>
-						<paper-button raised class="menu-bar-button" hidden$="[[user]]" on-click="_showDialog">Log In</paper-button>
-						<paper-icon-button id="shopping-cart" icon="icons:shopping-cart" hidden$="[[_showCart(user)]]"></paper-icon-button>
-						<paper-icon-button class="user-icon" id="user-icon" src$="[[user.photoURL]]" hidden$="[[!user]]"></paper-icon-button>
+            <paper-button raised class="menu-bar-button" hidden$="[[user]]" on-click="_showDialog">Log In</paper-button>
+            <paper-icon-button id="shopping-cart" icon="icons:shopping-cart" hidden$="[[_showCart(user)]]"></paper-icon-button>
+            <paper-icon-button class="user-icon" id="user-icon" src$="[[user.photoURL]]" hidden$="[[!user]]"></paper-icon-button>
           </app-toolbar>
         </app-header>
 
@@ -273,16 +273,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <paper-dialog id="dialog">
       <h2>
-				<div class="content"><div class="content-flex">Sign In</div><div><paper-icon-button icon="icons:close" on-click="_closeDialog"></paper-icon-button></div></div>
-			</h2>
-			<div>
-				<ul class="login-buttons">
-					<li><paper-button raised class="sign-in-button facebook-login-button" on-click="_loginWithProvider" data-item="facebook"><iron-icon src="images/facebook-icon.svg"></iron-icon><span class="login-button-text">Sign in with Facebook</span></paper-button></li>
-					<li><paper-button raised class="sign-in-button google-login-button" on-click="_loginWithProvider" data-item="google"><iron-icon src="images/google-logo.svg"></iron-icon><span class="login-button-text">Sign in with Google</span></paper-button></li>
-					<li><paper-button raised class="sign-in-button twitter-login-button"><iron-icon src="images/twitter-icon.svg"></iron-icon><span class="login-button-text">Sign in with Twitter</span></paper-button></li>
-					<li><paper-button raised class="sign-in-button github-login-button"><iron-icon src="images/github-icon.svg"></iron-icon><span class="login-button-text">Sign in with Github</span></paper-button></li>
-				</ul>
-			</div>
+        <div class="content"><div class="content-flex">Sign In</div><div><paper-icon-button icon="icons:close" on-click="_closeDialog"></paper-icon-button></div></div>
+      </h2>
+      <div>
+        <ul class="login-buttons">
+          <li><paper-button raised class="sign-in-button facebook-login-button" on-click="_loginWithProvider" data-item="facebook"><iron-icon src="images/facebook-icon.svg"></iron-icon><span class="login-button-text">Sign in with Facebook</span></paper-button></li>
+          <li><paper-button raised class="sign-in-button google-login-button" on-click="_loginWithProvider" data-item="google"><iron-icon src="images/google-logo.svg"></iron-icon><span class="login-button-text">Sign in with Google</span></paper-button></li>
+          <li><paper-button raised class="sign-in-button twitter-login-button"><iron-icon src="images/twitter-icon.svg"></iron-icon><span class="login-button-text">Sign in with Twitter</span></paper-button></li>
+          <li><paper-button raised class="sign-in-button github-login-button"><iron-icon src="images/github-icon.svg"></iron-icon><span class="login-button-text">Sign in with Github</span></paper-button></li>
+        </ul>
+      </div>
     </paper-dialog>
   </template>
 
@@ -341,22 +341,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _showDialog() {
-				this.$.dialog.open();
+        this.$.dialog.open();
       }
-			
-			_closeDialog() {
-				this.$.dialog.close();
-			}
+      
+      _closeDialog() {
+        this.$.dialog.close();
+      }
 
-			_showCart(user) {
-				return !user;
-			}
-	
-			_loginWithProvider(event) {
-				this.$.auth.signInWithPopup(event.target.dataset.item)
-					.then(function(response) { console.log(response); })
-					.catch(function(response) { console.log(response); });
-			}
+      _showCart(user) {
+        return !user;
+      }
+  
+      _loginWithProvider(event) {
+        this.$.auth.signInWithPopup(event.target.dataset.item)
+					.then(this._handleLoginComplete.bind(this))
+          .catch(function(response) { console.log(response); });
+      }
+
+      _handleLoginComplete() {
+        this.$.dialog.close();
+      }
     }
 
     window.customElements.define(MyApp.is, MyApp);
