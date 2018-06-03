@@ -18,10 +18,11 @@ import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/app-route/app-route.js';
+import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@polymer/iron-selector/iron-selector.js';
+import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
-import './my-icons.js';
 
 // Gesture events like tap and track generated from touch will not be
 // preventable, allowing for better scrolling performance.
@@ -29,15 +30,16 @@ setPassiveTouchGestures(true);
 
 // Set Polymer's root path to the same value we passed to our service worker
 // in `index.html`.
-setRootPath(MyAppGlobals.rootPath);
+setRootPath(WebBuilderAppGlobals.rootPath);
 
-class MyApp extends PolymerElement {
+class WebBuilderApp extends PolymerElement {
   static get template() {
     return html`
       <style>
         :host {
-          --app-primary-color: #4285f4;
+          --app-primary-color: white;
           --app-secondary-color: black;
+          --primary-color: #f44336;
 
           display: block;
         }
@@ -46,8 +48,8 @@ class MyApp extends PolymerElement {
           display: none;
         }
 
-        app-header {
-          color: #fff;
+        app-header, app-toolbar {
+          color: #f44336;
           background-color: var(--app-primary-color);
         }
 
@@ -79,7 +81,7 @@ class MyApp extends PolymerElement {
       <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
       </app-route>
 
-      <app-drawer-layout fullbleed="" narrow="{{narrow}}">
+      <app-drawer-layout fullbleed="" force-narrow="true" narrow="{{narrow}}">
         <!-- Drawer content -->
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
           <app-toolbar>Menu</app-toolbar>
@@ -95,8 +97,9 @@ class MyApp extends PolymerElement {
 
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
-              <paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button>
-              <div main-title="">My App</div>
+              <paper-icon-button icon="menu" drawer-toggle=""></paper-icon-button>
+              <div main-title="">BizNet Boost</div>
+              <paper-button hidden$="[[user]]">Log In</paper-button>
             </app-toolbar>
           </app-header>
 
@@ -170,4 +173,4 @@ class MyApp extends PolymerElement {
   }
 }
 
-window.customElements.define('my-app', MyApp);
+window.customElements.define('web-builder-app', WebBuilderApp);
