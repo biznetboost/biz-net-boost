@@ -72,6 +72,7 @@ class WebBuilderApp extends PolymerElement {
         .drawer-list a.iron-selected {
           color: black;
           font-weight: bold;
+          background-color: rgba(0, 0, 0, 0.12);
         }
 
         paper-button {
@@ -89,6 +90,17 @@ class WebBuilderApp extends PolymerElement {
           color: var(--app-primary-color);
           font-size: 14px;
         }
+
+        iron-icon.navbar-icon {
+          margin-top: -4px;
+        }
+        
+        .navbar-text {
+          line-height: 40px;
+          padding-left: 8px;
+          text-overflow: ellipsis;
+          vertical-align: top;
+        }
       </style>
 
       <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
@@ -102,7 +114,10 @@ class WebBuilderApp extends PolymerElement {
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
           <app-toolbar>Menu</app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-            <a name="view1" href="[[rootPath]]view1">View One</a>
+            <a name="home" href="[[rootPath]]home">
+              <iron-icon icon="home" class="navbar-icon"></iron-icon>
+              <span class="navbar-text">Home</span>
+            </a>
             <a name="view2" href="[[rootPath]]view2">View Two</a>
             <a name="view3" href="[[rootPath]]view3">View Three</a>
           </iron-selector>
