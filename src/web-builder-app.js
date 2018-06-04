@@ -73,6 +73,22 @@ class WebBuilderApp extends PolymerElement {
           color: black;
           font-weight: bold;
         }
+
+        paper-button {
+          padding: 0 20px;
+          height: 50px;
+          line-height: 50px;
+          font-size: 14px;
+        }
+        
+        .header-raised {
+          padding: 0 20px;
+          height: 50px;
+          line-height: 50px;
+          background-color: var(--primary-color);
+          color: var(--app-primary-color);
+          font-size: 14px;
+        }
       </style>
 
       <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
@@ -100,6 +116,7 @@ class WebBuilderApp extends PolymerElement {
               <paper-icon-button icon="menu" drawer-toggle=""></paper-icon-button>
               <div main-title="">BizNet Boost</div>
               <paper-button hidden$="[[user]]">Log In</paper-button>
+              <paper-button raised class="header-raised" hidden$="[[user]]">Get Started</paper-button>
             </app-toolbar>
           </app-header>
 
