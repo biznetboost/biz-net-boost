@@ -131,7 +131,6 @@ class WebBuilderApp extends PolymerElement {
               <paper-icon-button icon="menu" drawer-toggle=""></paper-icon-button>
               <div main-title="">BizNet Boost</div>
               <paper-button hidden$="[[user]]">Log In</paper-button>
-              <paper-button raised class="header-raised" hidden$="[[user]]">Get Started</paper-button>
             </app-toolbar>
           </app-header>
 
