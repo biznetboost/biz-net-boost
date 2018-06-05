@@ -81,7 +81,7 @@ class WebBuilderApp extends PolymerElement {
           line-height: 50px;
           font-size: 14px;
         }
-        
+
         .header-raised {
           padding: 0 20px;
           height: 50px;
@@ -100,6 +100,16 @@ class WebBuilderApp extends PolymerElement {
           padding-left: 8px;
           text-overflow: ellipsis;
           vertical-align: top;
+        }
+
+        a {
+          text-decoration: none;
+        }
+        
+        a paper-button,
+        a:active paper-button,
+        a:visited paper-button {
+          color: var(--primary-color);
         }
       </style>
 
@@ -129,13 +139,14 @@ class WebBuilderApp extends PolymerElement {
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
               <paper-icon-button icon="menu" drawer-toggle=""></paper-icon-button>
-              <div main-title="">BizNet Boost</div>
-              <paper-button hidden$="[[user]]">Log In</paper-button>
+              <div main-title="BizNet Boost">BizNet Boost</div>
+              <a href="/login" tabindex="-1"><paper-button hidden$="[[user]]">Log In</paper-button></a>
             </app-toolbar>
           </app-header>
 
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
             <home-view name="home"></home-view>
+            <login-view name="login"></login-view>
             <my-view2 name="view2"></my-view2>
             <my-view3 name="view3"></my-view3>
             <my-view404 name="view404"></my-view404>
@@ -163,6 +174,12 @@ class WebBuilderApp extends PolymerElement {
     ];
   }
 
+  navigateToLogin(buttonEl) {
+    buttonEl.addEventListener('transitionend', function(e) {
+      location.href = '/login';
+    });
+  }
+
   _routePageChanged(page) {
      // Show the corresponding page according to the route.
      //
@@ -170,7 +187,7 @@ class WebBuilderApp extends PolymerElement {
      // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
     if (!page) {
       this.page = 'home';
-    } else if (['home', 'view2', 'view3'].indexOf(page) !== -1) {
+    } else if (['home', 'login', 'view2', 'view3'].indexOf(page) !== -1) {
       this.page = page;
     } else {
       this.page = 'view404';
@@ -190,6 +207,9 @@ class WebBuilderApp extends PolymerElement {
     switch (page) {
       case 'home':
         import('./home-view.js');
+        break;
+      case 'login':
+        import('./login-view.js');
         break;
       case 'view2':
         import('./my-view2.js');
